@@ -1,0 +1,43 @@
+ ATM process
+import random
+from datetime import datetime
+amount = random.randint(0,10000)
+statement_msg=""
+while True:
+    print("1. Account Balance")
+    print("2. Withdrawl")
+    print("3. Transfer")
+    print("4. Mini statement")
+    print ("5. Exit")
+    ch= input("Enter your option:")
+    if ch=="1":
+        print("Here is your account balance")
+        print(datetime.now().strftime("%d-%m-%y %H:%M:%S"), ":INR", amount)
+    elif ch=="2":
+        amt= int(input("Enter the amount to withdraw"))
+        if amt<amount:
+            dttm= datetime.now().strftime("%d-%m-%y %H:%M:%S")
+            statement_msg += "\n " + str(dttm) + ": Withdrawl made of Rs " + str(amt)
+        if amt>amount:
+            print("sorry you dont have sufficient balance")
+        else:
+            amount-amt
+    elif ch=="3":
+        amt = int(input("Enter the amount to transfer"))
+        if amt < amount:
+            dttm = datetime.now().strftime("%d-%m-%y %H:%M:%S")
+            statement_msg += "\n " + str(dttm) + ": transfer made of Rs " + str(amt)
+        if amt > amount:
+            print("sorry you dont have sufficient balance")
+        else:
+            amount - amt
+    elif ch=="4":
+        dttm = datetime.now().strftime("%d-%m-%y %H:%M:%S")
+        statement_msg += "\n Balance as on" +str(dttm)+ "is rs" +str(amount-amt)
+        print(statement_msg)
+    elif ch=="5":
+        print("Have a nice day")
+        break
+    else:
+        print("Please try again")
+
